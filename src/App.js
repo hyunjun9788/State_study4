@@ -1,9 +1,16 @@
 import './App.css';
 import {useState} from "react";
+import Input from "./components/Input";
+import Content from "./components/Content";
 
 function App() {
+    const [text, setText] = useState({
+        totalLength: 0,
+        excludeSpace: 0,
+        word: 0,
+        line: 0
+    });
 
-    const [text, setText] = useState(0)
 
     const noSpace = (e) => {
         setText({
@@ -18,11 +25,8 @@ function App() {
 
     return (
         <div className="App">
-            <textarea className='text-box' onChange={noSpace}></textarea>
-            <div>공백 제외:{text.excludeSpace}</div>
-            <div>공백 포함:{text.totalLength}</div>
-            <div>단어:{text.word}</div>
-            <div>줄:{text.line}</div>
+            <Input onChange={noSpace}/>
+            <Content text={text}/>
         </div>
     );
 }
